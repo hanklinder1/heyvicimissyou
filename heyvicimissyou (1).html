@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hey Vic, I Miss You</title>
+  <meta name="description" content="A tiny love note on the web." />
+  <style>
+    :root {
+      --bg: #0f1225;
+      --card: #161a34cc;
+      --text: #f3f4f7;
+      --muted: #a9acc5;
+      --accent: #9b87f5;
+      --accent-2: #ff7ab6;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 80% -10%, #1e2246 0%, #0f1225 60%), #0f1225;
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+    }
+    .wrap {
+      width: min(92vw, 900px);
+      padding: 28px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, #ffffff12, #ffffff05);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 40px rgba(0,0,0,.35);
+      border: 1px solid #ffffff18;
+    }
+    h1 {
+      font-size: clamp(28px, 4.8vw, 64px);
+      margin: 0 0 10px;
+    }
+    .sub { color: var(--muted); margin: 0 0 20px; }
+    .photo img { width: 100%; border-radius: 16px; }
+    .notes { background: #111432; border-radius: 14px; padding: 14px; margin-top: 14px; }
+    .footer { margin-top: 20px; text-align: center; font-size: 13px; color: var(--muted); }
+    .btn {
+      display: inline-block; padding: 8px 14px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: white;
+      text-decoration: none; border-radius: 8px; font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Hey Vic, I Miss You</h1>
+    <p class="sub" id="subtitle">Loading...</p>
+
+    <div class="photo">
+      <img id="preview" alt="Hank & Vic" />
+    </div>
+
+    <div class="notes">
+      <h3>Note</h3>
+      <p id="noteText"></p>
+    </div>
+
+    <div class="notes">
+      <h3>Now Playing</h3>
+      <div id="embed"></div>
+    </div>
+
+    <div class="footer">
+      <a id="adminLink" href="#" class="btn">✏️ Edit Config</a>
+      <p>Made with 💜 by Hank</p>
+    </div>
+  </div>
+
+  <script>
+    const GITHUB_USER = '<YOUR_USERNAME>'; // Replace with your GitHub username
+    const GITHUB_REPO = '<YOUR_REPO>';     // Replace with your repository name
+    const CONFIG_URL = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/config.json`;
+    const ADMIN_URL = `https://github.com/${GITHUB_USER}/${GITHUB_REPO}/edit/main/config.json`;
+
+    document.getElementById('adminLink').href = ADMIN_URL;
+
+    function renderEmbed(url) {
+      const embed = document.getElementById('embed');
+      embed.innerHTML = '';
+      try {
+        if (url.includes('spotify.com/track')) {
+          const id = (url.split('/track/')[1]||'').split('?')[0];
+          embed.innerHTML = `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${id}" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`;
+        } else if (url.includes('youtube.com') || url.includes('youtu.be')) {
+          const id = url.match(/[?&]v=([^&]+)/)?.[1] || url.split('youtu.be/')[1];
+          embed.innerHTML = `<iframe width="100%" height="200" src="https://www.youtube.com/embed/${id}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+        } else {
+          embed.innerHTML = '<p class="sub">Add a Spotify or YouTube link in config.json</p>';
+        }
+      } catch {
+        embed.innerHTML = '<p class="sub">Could not load song.</p>';
+      }
+    }
+
+    async function loadConfig() {
+      try {
+        const res = await fetch(CONFIG_URL, { cache: 'no-store' });
+        if (!res.ok) throw new Error('Failed to fetch config');
+        const cfg = await res.json();
+        document.getElementById('subtitle').textContent = cfg.subtitle || '';
+        document.getElementById('noteText').textContent = cfg.note || '';
+        if (cfg.photoUrl) document.getElementById('preview').src = cfg.photoUrl;
+        if (cfg.songUrl) renderEmbed(cfg.songUrl);
+      } catch (err) {
+        document.getElementById('subtitle').textContent = 'Could not load data.';
+      }
+    }
+
+    loadConfig();
+  </script>
+</body>
+</html>
