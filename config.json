@@ -1,7 +1,18 @@
 {
-  "subtitle": "“I thank my God every time I remember you.” - Philippians 1:3",
-  "note": "Good luck on your exam, I can't wait to hang out later 😁",
+  "subtitle": "Evening vibes + you on my mind.",
+  "note": "Counting the days till our next pizza date 🍕",
   "photoUrl": "/images/hank-vic.jpg",
-  "songUrl": "https://open.spotify.com/track/1Bgj8C4oHOR5M3wuzb6Mmq?si=0f800b6766684c85"
+  "songUrl": "https://open.spotify.com/track/3AJwUDP919kvQ9QcozQPxg",
+  "compliments": [
+    "You’re my favorite notification.",
+    "You make ordinary days feel special.",
+    "Your smile is my happy place.",
+    "You + me > any algorithm.",
+    "Distance: temporary. Us: persistent."
+  ],
+  "quiz": {
+    "question": "Our next date idea?",
+    "options": ["🍕 Pizza night", "🎬 Movie", "🌇 Sunset walk"],
+    "correctIndex": 2
+  }
 }
-
