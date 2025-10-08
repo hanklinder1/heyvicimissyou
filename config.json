@@ -4,15 +4,15 @@
   "photoUrl": "/images/hank-vic.jpg",
   "songUrl": "https://open.spotify.com/track/3AJwUDP919kvQ9QcozQPxg",
   "compliments": [
-    "You’re my favorite notification.",
-    "You make ordinary days feel special.",
-    "Your smile is my happy place.",
-    "You + me > any algorithm.",
-    "Distance: temporary. Us: persistent."
+    "I admire your faith ",
+    "you are super pretty",
+    "you are kinda funny",
+    "You make me happy",
+    "you had pretty nails before we started dating"
   ],
   "quiz": {
     "question": "Our next date idea?",
-    "options": ["🍕 Pizza night", "🎬 Movie", "🌇 Sunset walk"],
+    "options": ["Longhorns 🦬", "🎬 Movie", "🌇 Sunset walk"],
     "correctIndex": 2
   }
 }
