@@ -12,7 +12,7 @@
   ],
   "quiz": {
     "question": "If Hank could teleport anywhere right now, where would he go?",
-    "options": ["Ibiza 🏝", "Salamanca 🇪🇸", "Shake Shack 🍔", Vic's Bed 🛏],
+    "options": ["Ibiza 🏝", "Shake Shack 🍔", "Vic's Bed 🛏"],
     "correctIndex": 2
   }
 }
