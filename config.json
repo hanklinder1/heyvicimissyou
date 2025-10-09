@@ -12,7 +12,7 @@
   ],
   "quiz": {
     "question": "When Hank’s stressed, what’s he most likely to do?",
-    "options": ["🏀 Shoot hoops", "💭 Take a drive", "Workout 🏋🏻‍♂️"],
+    "options": ["🏀 Shoot hoops", "💭 Take a drive", "🏋🏻‍♂️ Workout"],
     "correctIndex": 2
   }
 }
