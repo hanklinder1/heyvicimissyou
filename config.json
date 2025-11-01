@@ -16,3 +16,13 @@
     "correctIndex": 1
   }
 }
+"memories": [
+  {
+    "photo": "images/us1.jpeg",
+    "caption": "Your birthday 🎉"
+  },
+  {
+    "photo": "images/us2.jpeg",
+    "caption": "Halloween 👻 6️⃣7️⃣"
+  }
+]
