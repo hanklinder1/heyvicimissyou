@@ -1,1 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Our Memories 💜</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { background: var(--bg); color: var(--text); font-family: system-ui; margin: 0; padding: 24px; }
+    .wrap { width: min(92vw, 800px); margin: auto; }
+    h1 { text-align: center; margin-bottom: 18px; }
+    .memory {
+      background: #ffffff10;
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 20px;
+      border: 1px solid #ffffff18;
+    }
+    .memory img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+    .caption {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    a.back {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: var(--accent-2);
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Our Memories ❤️</h1>
+    <p style="text-align:center; color:var(--muted); margin-bottom:24px;">A little collection of my favorite moments with you.</p>
+
+    <div id="memories"></div>
+
+    <a href="index.html" class="back">← Back Home</a>
+  </div>
+
+  <script>
+    const CONFIG_URL = '/config.json';
+
+    async function loadMemories() {
+      const res = await fetch(CONFIG_URL, { cache: 'no-store' });
+      const cfg = await res.json();
+
+      if (!cfg.memories || !Array.isArray(cfg.memories)) return;
+
+      const container = document.getElementById('memories');
+
+      cfg.memories.forEach(mem => {
+        const div = document.createElement('div');
+        div.className = "memory";
+        div.innerHTML = `
+          <img src="${mem.photo}" alt="Memory photo">
+          <div class="caption">${mem.caption}</div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    loadMemories();
+  </script>
+</body>
+</html>
 
