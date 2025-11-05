@@ -11,7 +11,7 @@
     "you have a cool boyfriend"
   ],
   "quiz": {
-    "question": "How was my day out of ten,
+    "question": "How was my day out of ten",
     "options": ["1", "7", "9"],
     "correctIndex": 2
   }
