@@ -571,36 +571,20 @@
           }
           
           if (trackId) {
-            // Create iframe element directly for better control
-            const iframe = document.createElement('iframe');
-            iframe.style.borderRadius = '12px';
-            iframe.style.width = '100%';
-            iframe.style.height = '152px';
-            iframe.style.border = '0';
-            iframe.src = `https://open.spotify.com/embed/track/${trackId}`;
-            iframe.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
-            iframe.allowFullscreen = true;
-            
-            // Add fallback link
-            const fallback = document.createElement('div');
-            fallback.style.textAlign = 'center';
-            fallback.style.marginTop = '12px';
-            fallback.innerHTML = `<a href="${url}" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none; font-size: 14px; opacity: 0.8;">🎵 Open in Spotify</a>`;
-            
-            embed.appendChild(iframe);
-            embed.appendChild(fallback);
-            
-            // If iframe fails to load after 3 seconds, show message
-            setTimeout(() => {
-              try {
-                // Check if iframe loaded (cross-origin prevents full check, but we can try)
-                if (iframe.contentWindow) {
-                  // Iframe seems to have loaded
-                }
-              } catch (e) {
-                // Cross-origin - can't check, but that's normal for embeds
-              }
-            }, 3000);
+            // Use Spotify embed with proper parameters
+            const embedUrl = `https://open.spotify.com/embed/track/${trackId}?utm_source=generator&theme=0`;
+            embed.innerHTML = `
+              <iframe 
+                style="border-radius: 12px; width: 100%; height: 152px; border: 0;" 
+                src="${embedUrl}"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                loading="lazy"
+                title="Spotify Embed">
+              </iframe>
+              <div style="text-align: center; margin-top: 12px;">
+                <a href="${url}" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none; font-size: 14px; opacity: 0.8;">🎵 Open in Spotify</a>
+              </div>
+            `;
           } else {
             embed.innerHTML = '<p style="text-align:center; color: var(--text-muted);">Invalid Spotify URL format. Please use a track link.</p>';
           }
