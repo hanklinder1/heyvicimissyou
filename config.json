@@ -6,7 +6,7 @@
     "images/hank_vic_Triple.jpg",
     "images/hank-vic.jpg"
   ],
-  "songUrl": "https://open.spotify.com/track/6zkHoJWtO9CITdXeuY7RMl?si=6cfac8856862464b",
+  "songUrl": "https://open.spotify.com/track/4hObp5bmIJ3PP3cKA9K9GY?si=f1daa9caf9854faa",
   "compliments": [
     "I admire your faith",
     "You are pretty",
@@ -18,5 +18,19 @@
     "question": "How cute am I out of ten?",
     "options": ["9", "9", "10"],
     "correctIndex": 2
-  }
+  },
+  "memories": [
+    {
+      "photo": "images/hank_vic_Triple.jpg",
+      "title": "Our First Adventure",
+      "description": "This was such a special day! We had so much fun exploring together.",
+      "date": "2024"
+    },
+    {
+      "photo": "images/hank-vic.jpg",
+      "title": "Beautiful Moments",
+      "description": "Every moment with you feels like a dream come true.",
+      "date": "2024"
+    }
+  ]
 }

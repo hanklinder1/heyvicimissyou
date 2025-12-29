@@ -38,6 +38,28 @@ Edit the `"quiz"` object:
 - `"options"`: Array of answer choices (add emojis for fun!)
 - `"correctIndex"`: The correct answer (starts at 0, so first option = 0, second = 1, etc.)
 
+## 📸 Adding Memories (Gallery Page)
+
+Click "Memories" on the home page to see the full gallery! Add memories to the `"memories"` array:
+
+```json
+"memories": [
+  {
+    "photo": "images/photo1.jpg",
+    "title": "Memory Title",
+    "description": "A beautiful description of this special moment",
+    "date": "2024"
+  }
+]
+```
+
+- **photo**: Path to the image (relative to website root)
+- **title**: Title for this memory (optional)
+- **description**: Description of the memory (optional)
+- **date**: Date or year (optional)
+
+You can add as many memories as you want! They'll display in a beautiful grid on the memories page.
+
 ## 🚀 After Making Changes
 
 1. Save `config.json`

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Memories - Hey Vic, I Miss You</title>
+  <meta name="description" content="Our beautiful memories together" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    :root {
+      --bg: #0a0e27;
+      --bg-gradient: linear-gradient(135deg, #1a1f3a 0%, #0a0e27 50%, #1a1f3a 100%);
+      --card: rgba(22, 26, 52, 0.8);
+      --card-hover: rgba(28, 33, 65, 0.9);
+      --text: #f5f6fa;
+      --text-muted: #b4b8d1;
+      --accent: #a78bfa;
+      --accent-2: #ec4899;
+      --accent-gradient: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+      --border: rgba(255, 255, 255, 0.1);
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--bg-gradient);
+      background-attachment: fixed;
+      min-height: 100vh;
+      padding: 40px 20px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Animated background stars */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(2px 2px at 60% 70%, white, transparent),
+        radial-gradient(1px 1px at 50% 50%, white, transparent),
+        radial-gradient(1px 1px at 80% 10%, white, transparent),
+        radial-gradient(2px 2px at 90% 60%, white, transparent);
+      background-size: 200% 200%;
+      animation: twinkle 20s ease-in-out infinite;
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-5%, -5%); }
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      padding: 0 20px;
+    }
+
+    @media (min-width: 1600px) {
+      .container {
+        max-width: 1600px;
+      }
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 50px;
+      animation: fadeInDown 0.8s ease-out;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 700;
+      margin: 0 0 16px;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 16px;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+      padding: 10px 16px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+    }
+
+    .back-link:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateX(-4px);
+    }
+
+    .memories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    @media (min-width: 1400px) {
+      .memories-grid {
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        gap: 35px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .memories-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+
+    .memory-card {
+      background: var(--card);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: all 0.4s ease;
+      animation: fadeInUp 0.6s ease-out backwards;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .memory-card:nth-child(1) { animation-delay: 0.1s; }
+    .memory-card:nth-child(2) { animation-delay: 0.2s; }
+    .memory-card:nth-child(3) { animation-delay: 0.3s; }
+    .memory-card:nth-child(4) { animation-delay: 0.4s; }
+    .memory-card:nth-child(5) { animation-delay: 0.5s; }
+    .memory-card:nth-child(6) { animation-delay: 0.6s; }
+    .memory-card:nth-child(7) { animation-delay: 0.7s; }
+    .memory-card:nth-child(8) { animation-delay: 0.8s; }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .memory-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      background: var(--card-hover);
+    }
+
+    .memory-image {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      opacity: 0;
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .memory-content {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media (min-width: 1200px) {
+      .memory-content {
+        padding: 28px;
+      }
+    }
+
+    .memory-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0 0 12px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .memory-title::before {
+      content: '💕';
+      font-size: 18px;
+    }
+
+    .memory-description {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      margin: 0;
+      flex: 1;
+    }
+
+    .memory-date {
+      margin-top: 16px;
+      font-size: 14px;
+      color: var(--accent);
+      font-weight: 500;
+      opacity: 0.8;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+    }
+
+    .empty-state h2 {
+      font-size: 28px;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .loading {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <a href="index.html" class="back-link">
+        <span>←</span> Back to Home
+      </a>
+      <h1>Our Memories 💜</h1>
+      <p style="color: var(--text-muted); font-size: 18px;">Special moments we've shared together</p>
+    </div>
+
+    <div id="memoriesContainer" class="loading">
+      Loading memories...
+    </div>
+  </div>
+
+  <script>
+    const CONFIG_URL = '/config.json';
+
+    async function loadMemories() {
+      const container = document.getElementById('memoriesContainer');
+      
+      try {
+        const res = await fetch(CONFIG_URL, { cache: 'no-store' });
+        if (!res.ok) throw new Error('Failed to fetch config');
+        const cfg = await res.json();
+        
+        const memories = cfg.memories || [];
+        
+        if (memories.length === 0) {
+          container.className = 'empty-state';
+          container.innerHTML = `
+            <h2>No memories yet</h2>
+            <p>Add memories to config.json to see them here!</p>
+          `;
+          return;
+        }
+
+        container.className = 'memories-grid';
+        container.innerHTML = '';
+
+        memories.forEach((memory, index) => {
+          const card = document.createElement('div');
+          card.className = 'memory-card';
+          
+          const image = document.createElement('img');
+          image.className = 'memory-image';
+          image.src = memory.photo || memory.image;
+          image.alt = memory.title || 'Memory';
+          image.loading = 'lazy';
+          
+          const content = document.createElement('div');
+          content.className = 'memory-content';
+          
+          if (memory.title) {
+            const title = document.createElement('div');
+            title.className = 'memory-title';
+            title.textContent = memory.title;
+            content.appendChild(title);
+          }
+          
+          if (memory.description) {
+            const desc = document.createElement('p');
+            desc.className = 'memory-description';
+            desc.textContent = memory.description;
+            content.appendChild(desc);
+          }
+          
+          if (memory.date) {
+            const date = document.createElement('div');
+            date.className = 'memory-date';
+            date.textContent = memory.date;
+            content.appendChild(date);
+          }
+          
+          card.appendChild(image);
+          card.appendChild(content);
+          container.appendChild(card);
+        });
+
+      } catch (err) {
+        console.error('Error loading memories:', err);
+        container.className = 'empty-state';
+        container.innerHTML = `
+          <h2>Could not load memories</h2>
+          <p>There was an error loading the memories. Please check your config.json file.</p>
+        `;
+      }
+    }
+
+    loadMemories();
+  </script>
+</body>
+</html>
+
