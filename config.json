@@ -31,6 +31,36 @@
       "title": "Beautiful Moments",
       "description": "Every moment with you feels like a dream come true.",
       "date": "2024"
+    },
+    {
+      "photo": "images/memory_001.jpg",
+      "title": "Special Memory",
+      "description": "Add your description here",
+      "date": "2024"
+    },
+    {
+      "photo": "images/memory_002.jpg",
+      "title": "Special Memory",
+      "description": "Add your description here",
+      "date": "2024"
+    },
+    {
+      "photo": "images/memory_003.jpg",
+      "title": "Special Memory",
+      "description": "Add your description here",
+      "date": "2024"
+    },
+    {
+      "photo": "images/memory_004.jpg",
+      "title": "Special Memory",
+      "description": "Add your description here",
+      "date": "2024"
+    },
+    {
+      "photo": "images/memory_005.jpg",
+      "title": "Special Memory",
+      "description": "Add your description here",
+      "date": "2024"
     }
   ]
 }
