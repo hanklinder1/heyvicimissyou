@@ -1,72 +1,62 @@
 {
   "title": "Hey Vic, I Miss You",
   "subtitle": "\"Trust in the LORD with all your heart, and do not lean on your own understanding. In all your ways acknowledge Him, and He will make straight your paths.\" Proverbs 3:5–6",
-  "note": "Hang tonight 😏😉",
+  "note": "Cant wait to see you tomorrow 😄",
   "photos": [
     "images/hank_vic_Triple.jpg",
     "images/hank-vic.jpg"
   ],
   "songUrl": "https://open.spotify.com/track/4hObp5bmIJ3PP3cKA9K9GY?si=f1daa9caf9854faa",
-  "compliments": [
-    "I admire your faith",
-    "You are pretty",
-    "You are funny",
-    "You are smart",
-    "You have a cool boyfriend"
-  ],
-  "quiz": {
-    "question": "How cute am I out of ten?",
-    "options": ["9", "9", "10"],
-    "correctIndex": 2
-  },
+  "datingStartDate": "2025-09-27",
+  "countdownDate": "",
   "memories": [
     {
       "photo": "images/memory_000.jpg",
-      "title": "Special Memory",
-      "description": "Add your description here",
-      "date": "2024"
+      "title": "LSU Game Day",
+      "description": "We sat next to each other 😝.",
+      "date": "October 2025"
     },
     {
       "photo": "images/hank-vic.jpg",
-      "title": "Beautiful Moments",
-      "description": "Every moment with you feels like a dream come true.",
-      "date": "2024"
+      "title": "First Hike 🏔️",
+      "description": "Unclear if model was to scale 🤷‍♂️.",
+      "date": "October 2025"
     },
     {
       "photo": "images/hank_vic_Triple.jpg",
-      "title": "Our First Adventure",
-      "description": "This was such a special day! We had so much fun exploring together.",
-      "date": "2024"
+      "title": "Your birthday 🎉",
+      "description": "Closed out Triple T's 😎.",
+      "date": "October 2025"
     },
     {
       "photo": "images/memory_005.jpg",
-      "title": "Special Memory",
-      "description": "Add your description here",
-      "date": "2024"
+      "title": "Halloween 🎃",
+      "description": "6 7 😅.",
+      "date": "October 2025"
     },
     {
       "photo": "images/memory_001.jpg",
-      "title": "Special Memory",
-      "description": "Add your description here",
-      "date": "2024"
+      "title": "Halloween 🎃",
+      "description": "6 7 featuring Gru 🌝.",
+      "date": "October 2025"
     },
     {
       "photo": "images/memory_002.jpg",
-      "title": "Special Memory",
-      "description": "Add your description here",
-      "date": "2024"
+      "title": "Ethan's Birthday 🎉🇪🇸",
+      "description": "Ethan went downtown for the first time 🇪🇸.",
+      "date": "November 2025"
     },
     {
       "photo": "images/memory_003.jpg",
-      "title": "Special Memory",
-      "description": "Add your description here",
-      "date": "2024"
+      "title": "Josiah Queen Concert 🎶",
+      "description": "Saw Josiah Queen with friends and saw Claire!!",
+      "date": "November 2025"
     },
     {
       "photo": "images/memory_004.jpg",
-      "title": "Special Memory",
-      "description": "Add your description here",
-      "date": "2024"
+      "title": "Last Game Day 🥹",
+      "description": "We took a lot of pictures after the game 😁😐",
+      "date": "November 2025"
     }
   ]
 }
