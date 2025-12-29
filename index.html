@@ -246,7 +246,15 @@
       animation: fadeIn 1s ease forwards;
     }
 
-    @keyframes fadeIn {
+    /* Zoom out specific photos */
+    .photo-item img[src*="hank-vic.jpg"],
+    .photo-item img[src*="memory_004.jpg"] {
+      object-fit: contain;
+      object-position: center;
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+@keyframes fadeIn {
       to { opacity: 1; }
     }
 
@@ -389,50 +397,7 @@
     }
 
     /* Hearts Section */
-    .hearts-info {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-top: 16px;
-    }
 
-    .hearts-count {
-      padding: 10px 18px;
-      background: rgba(236, 72, 153, 0.15);
-      border-radius: 12px;
-      font-size: 14px;
-      color: var(--text-muted);
-      border: 1px solid var(--border);
-    }
-
-    .hearts-tip {
-      margin-top: 12px;
-      font-size: 14px;
-      color: var(--text-muted);
-      font-style: italic;
-    }
-
-    /* Hearts Animation */
-    .heart {
-      position: fixed;
-      pointer-events: none;
-      animation: floatUp 2s ease-out forwards;
-      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-      will-change: transform, opacity;
-      z-index: 9999;
-    }
-
-    @keyframes floatUp {
-      0% {
-        transform: translateY(0) scale(0.8) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-200px) scale(1.2) rotate(20deg);
-        opacity: 0;
-      }
-    }
 
     /* Footer */
     .footer {
@@ -551,18 +516,6 @@
       </div>
     </div>
 
-    <!-- Hearts -->
-    <div class="section" id="heartsSection">
-      <h2 class="section-title">💜 Send a Heart</h2>
-      <button id="heartBtnShared" class="btn" type="button">
-        <span>❤️</span> Send a heart
-      </button>
-      <div class="hearts-info">
-        <span id="heartLocal" class="hearts-count">0 sent (from you)</span>
-      </div>
-      <p class="hearts-tip">💡 Tip: Click anywhere on the page to float a heart!</p>
-    </div>
-
     <!-- Footer -->
     <div class="footer">
       <a id="adminLink" href="#" class="btn admin-link" style="display:none">✏️ Edit Config</a>
@@ -597,6 +550,10 @@
         img.src = photos[0];
         img.alt = 'Photo';
         img.loading = 'lazy';
+        // Add data attribute for specific styling
+        if (photos[0].includes('hank-vic.jpg') || photos[0].includes('memory_004.jpg')) {
+          img.setAttribute('data-zoom-out', 'true');
+        }
         photoItem.appendChild(img);
         gallery.appendChild(photoItem);
       } else {
@@ -608,6 +565,10 @@
           img.src = photo;
           img.alt = 'Photo';
           img.loading = 'lazy';
+          // Add data attribute for specific styling
+          if (photo.includes('hank-vic.jpg') || photo.includes('memory_004.jpg')) {
+            img.setAttribute('data-zoom-out', 'true');
+          }
           photoItem.appendChild(img);
           gallery.appendChild(photoItem);
         });
@@ -624,66 +585,39 @@
       }
 
       try {
-        if (url.includes('spotify.com/track')) {
-          const id = (url.split('/track/')[1] || '').split('?')[0];
-          embed.innerHTML = `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${id}" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`;
+        // Handle Spotify URLs - improved parsing for different formats
+        if (url.includes('spotify.com')) {
+          let trackId = null;
+          
+          // Try different Spotify URL formats
+          if (url.includes('/track/')) {
+            // Standard format: https://open.spotify.com/track/...
+            const match = url.match(/\/track\/([a-zA-Z0-9]+)/);
+            if (match) {
+              trackId = match[1];
+            }
+          } else if (url.includes('spotify:track:')) {
+            // URI format: spotify:track:...
+            trackId = url.split('spotify:track:')[1]?.split('?')[0];
+          }
+          
+          if (trackId) {
+            embed.innerHTML = `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${trackId}" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
+          } else {
+            embed.innerHTML = '<p style="text-align:center; color: var(--text-muted);">Invalid Spotify URL format. Please use a track link.</p>';
+          }
         } else if (url.includes('youtube.com') || url.includes('youtu.be')) {
           const id = url.match(/[?&]v=([^&]+)/)?.[1] || url.split('youtu.be/')[1]?.split('?')[0];
           embed.innerHTML = `<iframe width="100%" height="315" src="https://www.youtube.com/embed/${id}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 16px;"></iframe>`;
         } else {
           embed.innerHTML = '<p style="text-align:center; color: var(--text-muted);">Add a Spotify or YouTube link in config.json</p>';
         }
-      } catch {
-        embed.innerHTML = '<p style="text-align:center; color: var(--text-muted);">Could not load song.</p>';
+      } catch (err) {
+        console.error('Error rendering embed:', err);
+        embed.innerHTML = '<p style="text-align:center; color: var(--text-muted);">Could not load song. Please check the URL format.</p>';
       }
     }
 
-    // Hearts animation
-    function spawnHearts(x, y) {
-      const emojis = ['❤️', '💜', '💗', '💖', '💘', '💕', '💞', '💓'];
-      const colors = ['#ff7ab6', '#ffb3d6', '#ffd1e6', '#c7b8ff', '#a78bfa', '#ec4899', '#f472b6', '#fb7185'];
-      const n = 15;
-      
-      for (let i = 0; i < n; i++) {
-        const h = document.createElement('div');
-        h.className = 'heart';
-        h.textContent = emojis[i % emojis.length];
-        h.style.left = (x + (Math.random() * 80 - 40)) + 'px';
-        h.style.top = (y + (Math.random() * 30 - 15)) + 'px';
-        h.style.fontSize = (20 + Math.random() * 24) + 'px';
-        h.style.color = colors[i % colors.length];
-        h.style.transform = `translateY(0) rotate(${(Math.random() * 40 - 20)}deg)`;
-        document.body.appendChild(h);
-        setTimeout(() => h.remove(), 2000);
-      }
-    }
-
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('#heartBtnShared, a, input, textarea, select, .btn')) {
-        spawnHearts(e.clientX, e.clientY);
-        incrementLocalHearts();
-      }
-    }, { passive: true });
-
-    document.getElementById('heartBtnShared').addEventListener('click', (e) => {
-      const rect = e.target.getBoundingClientRect();
-      spawnHearts(rect.left + rect.width / 2, rect.top);
-      incrementLocalHearts();
-    });
-
-    function incrementLocalHearts() {
-      const key = 'heartLocalCount';
-      const count = (parseInt(localStorage.getItem(key) || '0', 10) + 1);
-      localStorage.setItem(key, count);
-      document.getElementById('heartLocal').textContent = `${count} sent (from you)`;
-    }
-
-    // Initialize heart count
-    (function() {
-      const key = 'heartLocalCount';
-      const count = parseInt(localStorage.getItem(key) || '0', 10);
-      document.getElementById('heartLocal').textContent = `${count} sent (from you)`;
-    })();
 
     // Compliments
     let complimentList = [
@@ -724,7 +658,7 @@
 
       const optionsDiv = document.createElement('div');
       optionsDiv.className = 'quiz-options';
-      
+
       quiz.options.forEach((opt, i) => {
         const id = 'opt-' + i;
         const option = document.createElement('div');

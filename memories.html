@@ -197,6 +197,14 @@
       animation: fadeIn 0.8s ease forwards;
     }
 
+    /* Zoom out specific photos */
+    .memory-image[src*="hank-vic.jpg"],
+    .memory-image[src*="memory_004.jpg"] {
+      object-fit: contain;
+      object-position: center;
+      background: rgba(0, 0, 0, 0.1);
+    }
+
     @keyframes fadeIn {
       to { opacity: 1; }
     }
@@ -314,6 +322,10 @@
           image.src = memory.photo || memory.image;
           image.alt = memory.title || 'Memory';
           image.loading = 'lazy';
+          // Zoom out specific photos
+          if (image.src.includes('hank-vic.jpg') || image.src.includes('memory_004.jpg')) {
+            image.setAttribute('data-zoom-out', 'true');
+          }
           
           const content = document.createElement('div');
           content.className = 'memory-content';
