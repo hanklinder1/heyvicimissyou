@@ -571,20 +571,60 @@
           }
           
           if (trackId) {
-            // Use Spotify embed with proper parameters
-            const embedUrl = `https://open.spotify.com/embed/track/${trackId}?utm_source=generator&theme=0`;
-            embed.innerHTML = `
-              <iframe 
-                style="border-radius: 12px; width: 100%; height: 152px; border: 0;" 
-                src="${embedUrl}"
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                loading="lazy"
-                title="Spotify Embed">
-              </iframe>
-              <div style="text-align: center; margin-top: 12px;">
-                <a href="${url}" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none; font-size: 14px; opacity: 0.8;">🎵 Open in Spotify</a>
-              </div>
-            `;
+            // Use Spotify embed with compact view and better error handling
+            const embedUrl = `https://open.spotify.com/embed/track/${trackId}?utm_source=generator&theme=0&t=0`;
+            
+            // Create iframe with onerror handling
+            const iframe = document.createElement('iframe');
+            iframe.style.borderRadius = '12px';
+            iframe.style.width = '100%';
+            iframe.style.height = '152px';
+            iframe.style.border = '0';
+            iframe.src = embedUrl;
+            iframe.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+            iframe.allowFullscreen = true;
+            iframe.loading = 'eager'; // Try eager loading instead of lazy
+            iframe.title = 'Spotify Embed';
+            
+            // Fallback container
+            const fallbackDiv = document.createElement('div');
+            fallbackDiv.style.textAlign = 'center';
+            fallbackDiv.style.marginTop = '12px';
+            fallbackDiv.innerHTML = `<a href="${url}" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none; font-size: 14px; opacity: 0.8;">🎵 Open in Spotify</a>`;
+            
+            embed.appendChild(iframe);
+            embed.appendChild(fallbackDiv);
+            
+            // If iframe doesn't load within 5 seconds, show alternative
+            let loadTimeout = setTimeout(() => {
+              // Check if iframe is still empty/error
+              try {
+                // Try to detect if iframe loaded (cross-origin limits this)
+                const testDiv = document.createElement('div');
+                testDiv.style.display = 'none';
+                embed.insertBefore(testDiv, iframe);
+                
+                // Show a more prominent fallback after timeout
+                const errorMsg = document.createElement('div');
+                errorMsg.style.textAlign = 'center';
+                errorMsg.style.padding = '20px';
+                errorMsg.style.background = 'rgba(167, 139, 250, 0.1)';
+                errorMsg.style.borderRadius = '12px';
+                errorMsg.style.marginTop = '12px';
+                errorMsg.innerHTML = `
+                  <p style="color: var(--text-muted); margin-bottom: 12px;">Having trouble loading the player?</p>
+                  <a href="${url}" target="_blank" rel="noopener noreferrer" class="btn" style="display: inline-flex;">🎵 Open in Spotify</a>
+                `;
+                embed.appendChild(errorMsg);
+              } catch (e) {
+                // Ignore errors
+              }
+            }, 5000);
+            
+            // Clear timeout if iframe loads successfully
+            iframe.onload = () => {
+              clearTimeout(loadTimeout);
+            };
           } else {
             embed.innerHTML = '<p style="text-align:center; color: var(--text-muted);">Invalid Spotify URL format. Please use a track link.</p>';
           }
