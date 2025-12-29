@@ -1,17 +1,21 @@
 {
-  "subtitle": "“Trust in the LORD with all your heart, and do not lean on your own understanding. In all your ways acknowledge Him, and He will make straight your paths.” Proverbs 3:5–6",
+  "title": "Hey Vic, I Miss You",
+  "subtitle": "\"Trust in the LORD with all your heart, and do not lean on your own understanding. In all your ways acknowledge Him, and He will make straight your paths.\" Proverbs 3:5–6",
   "note": "Hang tonight 😏😉",
-  "photoUrl": "images/hank_vic_Triple.jpg",
+  "photos": [
+    "images/hank_vic_Triple.jpg",
+    "images/hank-vic.jpg"
+  ],
   "songUrl": "https://open.spotify.com/track/6zkHoJWtO9CITdXeuY7RMl?si=6cfac8856862464b",
   "compliments": [
-    "I admire your faith ",
-    "you are pretty",
-    "you are funny",
+    "I admire your faith",
+    "You are pretty",
+    "You are funny",
     "You are smart",
-    "you have a cool boyfriend"
+    "You have a cool boyfriend"
   ],
   "quiz": {
-    "question": "How cute am i out of ten",
+    "question": "How cute am I out of ten?",
     "options": ["9", "9", "10"],
     "correctIndex": 2
   }
