@@ -21,15 +21,27 @@
   },
   "memories": [
     {
-      "photo": "images/hank_vic_Triple.jpg",
-      "title": "Our First Adventure",
-      "description": "This was such a special day! We had so much fun exploring together.",
+      "photo": "images/memory_000.jpg",
+      "title": "Special Memory",
+      "description": "Add your description here",
       "date": "2024"
     },
     {
       "photo": "images/hank-vic.jpg",
       "title": "Beautiful Moments",
       "description": "Every moment with you feels like a dream come true.",
+      "date": "2024"
+    },
+    {
+      "photo": "images/hank_vic_Triple.jpg",
+      "title": "Our First Adventure",
+      "description": "This was such a special day! We had so much fun exploring together.",
+      "date": "2024"
+    },
+    {
+      "photo": "images/memory_005.jpg",
+      "title": "Special Memory",
+      "description": "Add your description here",
       "date": "2024"
     },
     {
@@ -52,12 +64,6 @@
     },
     {
       "photo": "images/memory_004.jpg",
-      "title": "Special Memory",
-      "description": "Add your description here",
-      "date": "2024"
-    },
-    {
-      "photo": "images/memory_005.jpg",
       "title": "Special Memory",
       "description": "Add your description here",
       "date": "2024"
