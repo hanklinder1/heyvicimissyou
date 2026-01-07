@@ -14,7 +14,7 @@
       "photo": "images/memory_000.jpg",
       "title": "LSU Game Day",
       "description": "We sat next to each other 😝.",
-      "date": "August 2025"
+      "date": "September 2025"
     },
     {
       "photo": "images/hank-vic.jpg",
@@ -57,6 +57,18 @@
       "title": "Last Game Day 🥹",
       "description": "We took a lot of pictures after the game 😁😐",
       "date": "November 2025"
+    },
+    {
+      "photo": "images/memory_006.jpg",
+      "title": "Special Memory",
+      "description": "Add your description here",
+      "date": "2025"
+    },
+    {
+      "photo": "images/memory_007.jpg",
+      "title": "Special Memory",
+      "description": "Add your description here",
+      "date": "2025"
     }
   ]
 }
